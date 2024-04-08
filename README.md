@@ -29,3 +29,9 @@ Running this command will create a new WordPress plugin with the necessary and h
 5. Update the block's Interactivity API slug to align with our block's intent and custom functionality. This slug is a [critical piece for initializing the Interactivity API on our DOM node](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/packages-interactivity-api-reference/#wp-interactive).
 6. Remove the Create Block scaffold's use of `$unique_id`, as we will not need it here.
 7. Update the Create Block's example `logIsOpen` callback to `logPostId` so we can simply verify that everything is working in the console.
+
+## `step-2` - Add toggle bar markup, styling and user sentiments
+
+1. Add a `$user_sentiments` array, which contains our feedback options (`id`, `label`, `icon`).
+2. Add in HTML markup with Interactivity API directives for the top area: `.feedback-block__trigger-bar`. These include buttons to toggle the form open and closed.
+3. Add in CSS to start styling our `.feedback-block__trigger-bar` along with some CSS custom properties that we can reference.
