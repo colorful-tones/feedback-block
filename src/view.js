@@ -3,7 +3,7 @@
  */
 import { store, getContext } from '@wordpress/interactivity';
 
-store( 'create-block', {
+store( 'feedback-block', {
 	actions: {
 		toggle: () => {
 			const context = getContext();
