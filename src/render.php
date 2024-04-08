@@ -45,13 +45,11 @@ $server_context = array(
 	<button
 		data-wp-on--click="actions.toggle"
 		data-wp-bind--aria-expanded="context.isOpen"
-		aria-controls="<?php echo esc_attr( $unique_id ); ?>"
 	>
 		<?php esc_html_e( 'Toggle', 'feedback-block' ); ?>
 	</button>
 
 	<p
-		id="<?php echo esc_attr( $unique_id ); ?>"
 		data-wp-bind--hidden="!context.isOpen"
 	>
 		<?php
