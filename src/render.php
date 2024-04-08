@@ -10,8 +10,16 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-// Generate unique id for aria-controls.
-$unique_id = wp_unique_id( 'p-' );
+/**
+ * Checks if the 'postId' key is set in the context of the block.
+ * If it is not set, returns an empty string.
+ *
+ * @param object $block The block object.
+ * @return string The rendered content or an empty string.
+ */
+if ( ! isset( $block->context['postId'] ) ) {
+	return '';
+}
 ?>
 
 <div
