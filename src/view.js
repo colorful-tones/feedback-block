@@ -11,10 +11,10 @@ store( 'feedback-block', {
 		},
 	},
 	callbacks: {
-		logIsOpen: () => {
-			const { isOpen } = getContext();
+		logPostId: () => {
+			const { postId } = getContext();
 			// Log the value of `isOpen` each time it changes.
-			console.log( `Is open: ${ isOpen }` );
+			console.log( `Post ID: ${ postId }` );
 		},
 	},
 } );
