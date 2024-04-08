@@ -1,12 +1,102 @@
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
+body {
+	--feedback-block-background-color: rgb(255, 255, 255);
+	--feedback-block-foreground-color: rgb(0, 0, 0);
+	--feedback-block-accent-1: hsl(212, 100%, 48%);
+	--feedback-block-accent-2: hsla(0, 0%, 87%, 0.509);
+
+	--feedback-block-error-dark: rgb(123, 0, 0);
+	--feedback-block-error-light: rgb(255, 214, 214);
+
+	--feedback-block-warning-dark: hsl(237, 100%, 39%);
+	--feedback-block-warning-light: rgb(255, 255, 214);
+
+	--feedback-block-success-dark: rgb(0, 123, 0);
+	--feedback-block-success-light: rgb(230, 255, 230);
+
+	--feedback-block-svg-fill--hate-it: rgb(182, 231, 255);
+	--feedback-block-svg-fill--love-it: rgb(255, 195, 223);
+
+	--feedback-block-focus-ring: 0 0 0 2px var(--feedback-block-accent-2),0 0 0 4px var(--feedback-block-accent-1);
+
+	--feedback-block-textarea-background-color: rgba(255, 255, 255, 0.2);
+	--feedback-block-textarea-border-color: rgba(255, 255, 255, 0.2);
+
+	--feedback-block-spacing: 1rem;
+	--feedback-block-border-radius: 12px;
+	--feedback-block-gap: 0.5rem;
+}
+
+
 .wp-block-create-block-feedback-block {
-	font-size: 1em;
-	background: #ffff001a;
-	padding: 1em;
+	background-color: var(--feedback-block-background-color, var(--wp--preset--color--background));
+	border: 1px solid var(--feedback-block-foreground-color, currentColor);
+	border-radius: var(--feedback-block-border-radius, 0.33rem);
+	color: var(--feedback-block-foreground-color, currentColor);
+}
+
+.single .wp-block-create-block-feedback-block {
+	max-width: fit-content;
+	overflow: hidden;
+}
+
+.feedback-block__trigger-bar {
+	align-items: center;
+	display: flex;
+	gap: var(--feedback-block-gap, var(--wp--style--block-gap));
+	justify-content: center;
+	padding: calc(0.5 * var(--feedback-block-spacing)) var(--feedback-block-spacing);
+}
+
+.feedback-block__question {
+	line-height: 1;
+	margin: 0;
+}
+
+.feedback-block__sentiments {
+	align-items: center;
+	display: flex;
+	gap: 1px;
+}
+
+.wp-block-create-block-feedback-block :where(button) {
+	align-items: center;
+	background-color: initial;
+	background-image: none;
+	border-color: var(--feedback-block-foreground-color, currentColor);
+	border-radius: 999px;
+	border-width: 2px;
+	box-sizing: border-box;
+	color: currentColor;
+	cursor: pointer;
+	font-family: inherit;
+	outline: none;
+	padding: 0.4rem 1.5rem;
+}
+
+.wp-block-create-block-feedback-block :where(button:focus-visible) {
+	outline: none;
+	box-shadow: var(--feedback-block-focus-ring);
+}
+
+.feedback-block__sentiment {
+	border: none;
+	display: flex;
+	height: 2rem;
+	justify-content: center;
+	padding: 0;
+	width: 2rem;
+}
+
+:where(.feedback-block__sentiment):hover {
+	background-color: var(--wp--preset--color--base-2);
+}
+
+:where(.feedback-block__sentiment):focus {
+	outline-color: var(--wp--preset--color--contrast-3);
+	outline-width: 1px;
 }
