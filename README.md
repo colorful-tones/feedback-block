@@ -35,3 +35,14 @@ Running this command will create a new WordPress plugin with the necessary and h
 1. Add a `$user_sentiments` array, which contains our feedback options (`id`, `label`, `icon`).
 2. Add in HTML markup with Interactivity API directives for the top area: `.feedback-block__trigger-bar`. These include buttons to toggle the form open and closed.
 3. Add in CSS to start styling our `.feedback-block__trigger-bar` along with some CSS custom properties that we can reference.
+
+## `step-3` - Add form markup with directives & client-side store
+
+1. Add remaining form HTML markup with interactive directives.
+2. Start updating global state in `view.js`.
+3. Add getters for `hasSuccess`, `hasError`, and `formMessage` in `state` object.
+4. Add `focusField` method to the `callbacks` object. This will set `.focus()` on the `textarea` when the form area is expanded.
+5. Add `toggleForm` method to the `actions` object. This will handle toggling the form open and closed.
+6. Add `*submitForm` generator function to the `actions` object. This is where we handle the client-side form submission.
+7. Add the remaining CSS for the form area.
+8. Add missing `getElement` import for `@wordpress/interactivity` module.
