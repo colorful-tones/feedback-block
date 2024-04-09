@@ -51,3 +51,7 @@ Running this command will create a new WordPress plugin with the necessary and h
 
 1. Add WordPress AJAX action to handle form submission. Check the nonce (number used once) for security. Trigger an email to `admin_email` if submission is successful.
 2. Use Block Hooks to assign our feedback-block to `after` the `core/post-terms` block on a single post template.
+
+## `step-5` - Clean up: rename registered block name
+
+1. Rename registered block name: `create-block/feedback-block` -> `dev-hours/feedback-block`, and update CSS targets to match.
