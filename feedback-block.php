@@ -85,7 +85,7 @@ function feedback_block_hooks( $hooked_blocks, $position, $anchor_block, $contex
 			'after' === $position &&
 			'single' === $context->slug
 		) {
-			$hooked_blocks[] = 'create-block/feedback-block';
+			$hooked_blocks[] = 'dev-hours/feedback-block';
 		}
 	}
 
