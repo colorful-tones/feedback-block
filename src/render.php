@@ -72,18 +72,28 @@ $user_sentiments = array(
 	<?php echo wp_interactivity_data_wp_context( $server_context ); ?>
 	data-wp-watch="callbacks.logPostId"
 >
-	<button
-		data-wp-on--click="actions.toggle"
-		data-wp-bind--aria-expanded="context.isOpen"
-	>
-		<?php esc_html_e( 'Toggle', 'feedback-block' ); ?>
-	</button>
 
-	<p
-		data-wp-bind--hidden="!context.isOpen"
-	>
-		<?php
-			esc_html_e( 'Feedback Block - hello from an interactive block!', 'feedback-block' );
-		?>
-	</p>
+	<div class="feedback-block__trigger-bar">
+		<p class="feedback-block__question"><?php echo esc_html_e( 'Was this helpful?', 'feedback-block' ); ?></p>
+
+		<span class="feedback-block__sentiments">
+			<?php foreach ( $user_sentiments as $sentiment ) : ?>
+				<button
+					aria-controls="feedback-block-drawer"
+					aria-label="Select <?php echo esc_html( $sentiment['label'] ); ?> as your sentiment"
+					class="feedback-block__sentiment"
+					data-wp-bind--aria-checked="!context.isFormHidden"
+					data-wp-class--selected="context.isSelected"
+					data-wp-on--click="actions.toggleForm"
+					data-wp-run--update-selected="actions.updateSelected"
+					data-checked-value="<?php echo esc_html( $sentiment['label'] ); ?>"
+					role="radio"
+					type="button"
+				>
+					<?php echo $sentiment['icon']; // phpcs:ignore ?>
+				</button>
+			<?php endforeach; ?>
+		</span>
+	</div><!-- .feedback-block__trigger-bar -->
+
 </div>
