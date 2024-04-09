@@ -46,3 +46,8 @@ Running this command will create a new WordPress plugin with the necessary and h
 6. Add `*submitForm` generator function to the `actions` object. This is where we handle the client-side form submission.
 7. Add the remaining CSS for the form area.
 8. Add missing `getElement` import for `@wordpress/interactivity` module.
+
+## `step-4` - Add server side AJAX submission handler + block hook
+
+1. Add WordPress AJAX action to handle form submission. Check the nonce (number used once) for security. Trigger an email to `admin_email` if submission is successful.
+2. Use Block Hooks to assign our feedback-block to `after` the `core/post-terms` block on a single post template.
