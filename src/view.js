@@ -29,6 +29,35 @@ const { state } = store( 'feedback-block', {
 		}
 	},
 	actions: {
+		*submitForm( event ) {
+			const context = getContext();
+			const { ref } = getElement();
+
+			event.preventDefault();
+
+			const formData = new FormData( ref );
+			formData.append( 'action', 'submit_feedback' );
+			formData.append( 'nonce', context.nonce );
+			formData.append( 'postId', context.postId );
+			context.isFormProcessing = true;
+
+			try {
+				yield fetch(
+					context.ajaxUrl,
+					{
+						method: 'POST',
+						credentials: 'same-origin',
+						body: formData
+					}
+				).then(
+					r => r.text()
+				)
+				context.status = "success";
+			} catch( error ) {
+				console.error( 'Error:', error );
+				context.status = "error";
+			}
+		},
 		toggleForm() {
 			const context = getContext();
 			const element = getElement();
