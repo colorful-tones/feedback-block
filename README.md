@@ -55,3 +55,8 @@ Running this command will create a new WordPress plugin with the necessary and h
 ## `step-5` - Clean up: rename registered block name
 
 1. Rename registered block name: `create-block/feedback-block` -> `dev-hours/feedback-block`, and update CSS targets to match.
+
+## `step-6` - Status message styling update and `.nvmrc`
+
+1. Add an `.nvmrc` file for better developer experience.
+2. CSS adjustments to status message for better color contrast.
