@@ -29,9 +29,17 @@ const { state } = store( 'feedback-block', {
 		}
 	},
 	actions: {
-		toggle: () => {
+		toggleForm() {
 			const context = getContext();
-			context.isOpen = ! context.isOpen;
+			const element = getElement();
+			context.isSelected = !context.isSelected;
+			context.isFormHidden = !context.isFormHidden;
+
+			if ( !context.isFormHidden ) {
+				context.currentlySelected = element.attributes['data-checked-value'];
+			} else {
+				context.currentlySelected = '';
+			}
 		},
 	},
 	callbacks: {
