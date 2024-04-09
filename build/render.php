@@ -70,7 +70,6 @@ $user_sentiments = array(
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive="feedback-block"
 	<?php echo wp_interactivity_data_wp_context( $server_context ); ?>
-	data-wp-watch="callbacks.logPostId"
 >
 
 	<div class="feedback-block__trigger-bar">
@@ -95,5 +94,60 @@ $user_sentiments = array(
 			<?php endforeach; ?>
 		</span>
 	</div><!-- .feedback-block__trigger-bar -->
+
+	<div
+		class="feedback-block__drawer"
+		data-wp-bind--hidden="context.isFormHidden"
+		data-wp-class--expanded="context.isFormHidden"
+		id="feedback-block-drawer"
+	>
+
+		<div
+			class="feedback-block__status"
+			data-wp-bind--hidden="!context.isFormProcessing"
+			data-wp-class--error="state.hasError"
+			data-wp-class--success="state.hasSuccess"
+		>
+			<p
+				class="feedback-block__status-message"
+				data-wp-text="state.formMessage"
+			></p>
+		</div>
+
+		<form
+			data-wp-on--submit="actions.submitForm"
+			data-wp-watch="callback.focusField"
+			id="feedback-form"
+		>
+			<div class="feedback-block__form-inner">
+				<textarea
+					class="feedback-block__textarea"
+					cols="45"
+					id="feedback"
+					name="feedback"
+					placeholder="<?php esc_html_e( 'Your feedback...', 'feedback-form' ); ?>"
+					required
+					rows="8"
+					spellcheck="false"
+				></textarea>
+
+				<input
+					data-wp-bind--value="context.currentlySelected"	
+					id="feedback-form-selected-sentiment"
+					name="feedback-form-selected-sentiment"
+					type="hidden"
+				/>
+			</div>
+			
+			<div class="feedback-block__form-actions">
+				<button
+					class="feedback-block__submit-button"
+					type="submit"
+				>
+					<?php esc_html_e( 'Send', 'feedback-form' ); ?>
+				</button>
+			</div>
+		</form>
+	</div><!-- .feedback-block__drawer -->
 
 </div>
