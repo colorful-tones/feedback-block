@@ -20,6 +20,20 @@
 if ( ! isset( $block->context['postId'] ) ) {
 	return '';
 }
+
+/**
+ * Sets up the server context for rendering the feedback block.
+ *
+ * The server context includes the post ID, AJAX URL, and nonce for the feedback block.
+ *
+ * @param array $block The block context.
+ * @return array The server context.
+ */
+$server_context = array(
+	'postId'  => $block->context['postId'],
+	'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+	'nonce'   => wp_create_nonce( 'feedback_block_nonce' ),
+);
 ?>
 
 <div
