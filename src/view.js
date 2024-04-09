@@ -1,9 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { store, getContext } from '@wordpress/interactivity';
+import {
+	store,
+	getContext,
+} from '@wordpress/interactivity';
 
-store( 'feedback-block', {
+const { state } = store( 'feedback-block', {
+	state: {
+		isFormHidden      : true,
+		isFormProcessing  : false,
+		currentlySelected : '',
+		hasSuccess        : false,
+		hasError          : false,
+		formMessage       : '',
+	},
 	actions: {
 		toggle: () => {
 			const context = getContext();
