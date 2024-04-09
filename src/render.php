@@ -70,7 +70,6 @@ $user_sentiments = array(
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive="feedback-block"
 	<?php echo wp_interactivity_data_wp_context( $server_context ); ?>
-	data-wp-watch="callbacks.logPostId"
 >
 
 	<div class="feedback-block__trigger-bar">
