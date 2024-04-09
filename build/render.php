@@ -10,26 +10,46 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-// Generate unique id for aria-controls.
-$unique_id = wp_unique_id( 'p-' );
+/**
+ * Checks if the 'postId' key is set in the context of the block.
+ * If it is not set, returns an empty string.
+ *
+ * @param object $block The block object.
+ * @return string The rendered content or an empty string.
+ */
+if ( ! isset( $block->context['postId'] ) ) {
+	return '';
+}
+
+/**
+ * Sets up the server context for rendering the feedback block.
+ *
+ * The server context includes the post ID, AJAX URL, and nonce for the feedback block.
+ *
+ * @param array $block The block context.
+ * @return array The server context.
+ */
+$server_context = array(
+	'postId'  => $block->context['postId'],
+	'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+	'nonce'   => wp_create_nonce( 'feedback_block_nonce' ),
+);
 ?>
 
 <div
 	<?php echo get_block_wrapper_attributes(); ?>
-	data-wp-interactive="create-block"
-	<?php echo wp_interactivity_data_wp_context( array( 'isOpen' => false ) ); ?>
-	data-wp-watch="callbacks.logIsOpen"
+	data-wp-interactive="feedback-block"
+	<?php echo wp_interactivity_data_wp_context( $server_context ); ?>
+	data-wp-watch="callbacks.logPostId"
 >
 	<button
 		data-wp-on--click="actions.toggle"
 		data-wp-bind--aria-expanded="context.isOpen"
-		aria-controls="<?php echo esc_attr( $unique_id ); ?>"
 	>
 		<?php esc_html_e( 'Toggle', 'feedback-block' ); ?>
 	</button>
 
 	<p
-		id="<?php echo esc_attr( $unique_id ); ?>"
 		data-wp-bind--hidden="!context.isOpen"
 	>
 		<?php
