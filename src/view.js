@@ -14,6 +14,19 @@ const { state } = store( 'feedback-block', {
 		hasSuccess        : false,
 		hasError          : false,
 		formMessage       : '',
+		get hasSuccess() {
+			const { status } = getContext();
+			return status === "success";
+		},
+		get hasError() {
+			const { status } = getContext();
+			return status === "error";
+		},
+		get formMessage() {
+			const { status } = getContext();
+			if ( status === "success" ) return "Success!";
+			if ( status === "error" ) return "Error!";
+		}
 	},
 	actions: {
 		toggle: () => {
