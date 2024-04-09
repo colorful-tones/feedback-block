@@ -24,7 +24,7 @@ body {
 	--feedback-block-focus-ring: 0 0 0 2px var(--feedback-block-accent-2),0 0 0 4px var(--feedback-block-accent-1);
 
 	--feedback-block-textarea-background-color: rgba(255, 255, 255, 0.2);
-	--feedback-block-textarea-border-color: rgba(255, 255, 255, 0.2);
+	--feedback-block-textarea-border-color: rgba(0, 0, 0, 0.6);
 
 	--feedback-block-spacing: 1rem;
 	--feedback-block-border-radius: 12px;
@@ -44,6 +44,7 @@ body {
 	overflow: hidden;
 }
 
+/** Trigger bar which wraps sentiment buttons **/
 .feedback-block__trigger-bar {
 	align-items: center;
 	display: flex;
@@ -63,6 +64,7 @@ body {
 	gap: 1px;
 }
 
+/** Buttons **/
 .wp-block-create-block-feedback-block :where(button) {
 	align-items: center;
 	background-color: initial;
@@ -76,6 +78,10 @@ body {
 	font-family: inherit;
 	outline: none;
 	padding: 0.4rem 1.5rem;
+
+	& svg {
+		height: 100%;
+	}
 }
 
 .wp-block-create-block-feedback-block :where(button:focus-visible) {
@@ -93,10 +99,83 @@ body {
 }
 
 :where(.feedback-block__sentiment):hover {
-	background-color: var(--wp--preset--color--base-2);
+	background-color: var(--feedback-block-accent-2);
 }
 
 :where(.feedback-block__sentiment):focus {
-	outline-color: var(--wp--preset--color--contrast-3);
+	outline-color: var(--feedback-block-accent-1);
 	outline-width: 1px;
+}
+
+/** Form wrapper **/
+.feedback-block__drawer {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows .2s;
+}
+
+.feedback-block__drawer > * {
+	overflow: hidden;
+}
+
+.feedback-block__drawer:where(.expanded, .processing, .success, .error) {
+	grid-template-rows: 1fr;
+}
+
+.feedback-block__form-inner {
+	padding-left: var(--feedback-block-spacing, var(--wp--preset--spacing--10));
+	padding-right: var(--feedback-block-spacing, var(--wp--preset--spacing--10));
+}
+
+/** Textarea **/
+:where(.feedback-block__textarea) {
+	background-color: var(--feedback-block-textarea-background-color);
+	border-radius: 0.33rem;
+	border: 1px solid var(--feedback-block-textarea-border-color);
+	box-sizing: border-box;
+	display: block;
+	height: 100px;
+	padding: calc(.667em + 2px);
+	opacity: 0.6;
+	outline-offset: -2px;
+	resize: none;
+	transition: opacity .2s;
+	width: 100%;
+}
+
+:where(.feedback-block__textarea):focus {
+	opacity: 0.95;
+}	
+
+/** Submit button wrapper **/
+:where(.feedback-block__form-actions) {
+	display: flex;
+	justify-content: flex-end;
+	padding: var(--feedback-block-spacing, var(--wp--preset--spacing--10));
+}
+
+/** Status messages **/
+.feedback-block__status {
+	margin: calc(0.5 * var(--feedback-block-spacing)) var(--feedback-block-spacing);
+}
+
+.feedback-block__status-message {
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: calc(0.5 * var(--feedback-block-spacing)) var(--feedback-block-spacing);
+}
+
+.error {
+	background-color: var(--feedback-block-error-light);
+	color: var(--feedback-block-error-dark);
+}
+
+.success {
+	background-color: var(--feedback-block-success-light);
+	color: var(--feedback-block-success-dark);
+}
+
+.warning {
+	background-color: var(--feedback-block-warning-light);
+	color: var(--feedback-block-warning-dark);
 }
