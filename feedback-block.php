@@ -66,3 +66,29 @@ function feedback_block_submission_handler() {
 add_action( 'wp_ajax_submit_feedback', 'feedback_block_submission_handler' );
 add_action( 'wp_ajax_nopriv_submit_feedback', 'feedback_block_submission_handler' );
 
+/**
+ * Adds a feedback block after the Post Terms in the Single template.
+ *
+ * @param array $hooked_blocks The array of hooked blocks.
+ * @param string $position The position of the block relative to the anchor block.
+ * @param string $anchor_block The anchor block.
+ * @param object $context The context object.
+ * @return array The modified array of hooked blocks.
+ */
+function feedback_block_hooks( $hooked_blocks, $position, $anchor_block, $context ) {
+
+	// Template/Template Part hooks.
+	if ( $context instanceof WP_Block_Template ) {
+		// Hooks the feedback block after the Post Terms in the Single template.
+		if (
+			'core/post-terms' === $anchor_block &&
+			'after' === $position &&
+			'single' === $context->slug
+		) {
+			$hooked_blocks[] = 'create-block/feedback-block';
+		}
+	}
+
+	return $hooked_blocks;
+}
+add_filter( 'hooked_block_types', 'feedback_block_hooks', 10, 4 );
