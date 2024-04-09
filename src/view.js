@@ -4,6 +4,7 @@
 import {
 	store,
 	getContext,
+	getElement,
 } from '@wordpress/interactivity';
 
 const { state } = store( 'feedback-block', {
