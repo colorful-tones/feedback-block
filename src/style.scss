@@ -10,13 +10,13 @@ body {
 	--feedback-block-accent-2: hsla(0, 0%, 87%, 0.509);
 
 	--feedback-block-error-dark: rgb(123, 0, 0);
-	--feedback-block-error-light: rgb(255, 214, 214);
+	--feedback-block-error-light: rgb(255, 214, 214, 0.4);
 
 	--feedback-block-warning-dark: hsl(237, 100%, 39%);
 	--feedback-block-warning-light: rgb(255, 255, 214);
 
 	--feedback-block-success-dark: rgb(0, 123, 0);
-	--feedback-block-success-light: rgb(230, 255, 230);
+	--feedback-block-success-light: rgb(230, 255, 230, 0.2);
 
 	--feedback-block-svg-fill--hate-it: rgb(182, 231, 255);
 	--feedback-block-svg-fill--love-it: rgb(255, 195, 223);
@@ -156,6 +156,7 @@ body {
 
 /** Status messages **/
 .feedback-block__status {
+	border-radius: calc(var(--feedback-block-border-radius) / 2);
 	margin: calc(0.5 * var(--feedback-block-spacing)) var(--feedback-block-spacing);
 }
 
