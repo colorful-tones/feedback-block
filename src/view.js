@@ -35,10 +35,13 @@ const { state } = store( 'feedback-block', {
 		},
 	},
 	callbacks: {
-		logPostId: () => {
-			const { postId } = getContext();
-			// Log the value of `isOpen` each time it changes.
-			console.log( `Post ID: ${ postId }` );
-		},
+		focusField() {
+			const { isFormHidden } = getContext();
+			const { ref } = getElement();
+			
+			if ( isFormHidden ) {
+				ref.querySelector( 'textarea' ).focus();
+			}
+		}
 	},
 } );
